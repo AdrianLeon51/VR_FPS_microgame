@@ -100,7 +100,7 @@ namespace Unity.FPS.Gameplay
         [Tooltip("Smooth rotation speed for VR thumbstick turning")]
         public float VRRotationSmoothing = 10f;
 
-        private float m_CurrentRotationVelocity = 0f; // Add this field
+        private float m_CurrentRotationVelocity = 10f; // Add this field
 
         public UnityAction<bool> OnStanceChanged;
 
@@ -272,20 +272,25 @@ namespace Unity.FPS.Gameplay
 
         void HandleCharacterMovement()
         {
-            // horizontal character rotation
+            VRPlayerInputHandler vrInput = m_InputHandler as VRPlayerInputHandler;
+            // Only apply rotation if not using head-based rotation
+            // Only apply joystick rotation if head gain isn't actively rotating
+            if (HeadGainManager.rotationIdleActive)
             {
+                /*
                 float targetRotationInput = m_InputHandler.GetLookInputsHorizontal() * RotationSpeed * RotationMultiplier;
-                
-                // Smooth the rotation velocity
+
                 m_CurrentRotationVelocity = Mathf.Lerp(
-                    m_CurrentRotationVelocity, 
-                    targetRotationInput, 
+                    m_CurrentRotationVelocity,
+                    targetRotationInput,
                     1f - Mathf.Exp(-VRRotationSmoothing * Time.deltaTime)
                 );
-                
-                // Apply smoothed rotation
+
                 transform.Rotate(new Vector3(0f, m_CurrentRotationVelocity, 0f), Space.Self);
+                */
             }
+
+
 
             // vertical camera rotation
             {
@@ -299,7 +304,7 @@ namespace Unity.FPS.Gameplay
                 PlayerCamera.transform.localEulerAngles = new Vector3(m_CameraVerticalAngle, 0, 0);
             }
 
-            VRPlayerInputHandler vrInput = m_InputHandler as VRPlayerInputHandler;
+            
             // character movement handling
             bool isSprinting = m_InputHandler.GetSprintInputHeld();
             {
@@ -321,10 +326,8 @@ namespace Unity.FPS.Gameplay
                     {
                         // HumanJoystick mode - skip normal movement, only handle rotation
                         // horizontal character rotation
-                        transform.Rotate(
-                            new Vector3(0f, (m_InputHandler.GetLookInputsHorizontal() * RotationSpeed * RotationMultiplier), 0f), 
-                            Space.Self);
-                        
+                        //transform.Rotate(new Vector3(0f, (m_InputHandler.GetLookInputsHorizontal() * RotationSpeed * RotationMultiplier), 0f),Space.Self);
+                        return;
                         // Skip the rest of movement code by jumping to after it
                         // (You'll need to add a label after the movement block - see below)
                     }
