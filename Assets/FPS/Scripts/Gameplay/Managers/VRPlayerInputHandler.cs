@@ -20,10 +20,22 @@ namespace Unity.FPS.Gameplay
         [Tooltip("Thumbstick deadzone")]
         public float ThumbstickDeadzone = 0.2f;
 
+        // NEW: Optional gaze-based firing
+        [Header("Gaze Fire Settings (Optional)")]
+        [Tooltip("Enable gaze-based firing through SelectionInputManager")]
+        public bool enableGazeFiring = false;
+        
+        [Tooltip("Reference to SelectionInputManager (optional, for gaze-based firing)")]
+        public SelectionInputManager selectionInputManager;
+
         GameFlowManager m_GameFlowManager;
         PlayerCharacterController m_PlayerCharacterController;
         bool m_FireInputWasHeld;
         float m_SmoothTurnInput;
+
+        // NEW: Track gaze fire state
+        private bool m_GazeFireTriggered;
+        private bool m_GazeFireWasHeld;
 
         public enum MovementMode
         {
@@ -52,11 +64,40 @@ namespace Unity.FPS.Gameplay
             {
                 Debug.LogError("VRPlayerInputHandler: RightHandAnchor is not assigned! Assign OVRCameraRig/TrackingSpace/RightHandAnchor in inspector.");
             }
+
+            // NEW: Subscribe to gaze selection events if enabled
+            if (enableGazeFiring && selectionInputManager != null)
+            {
+                selectionInputManager.OnObjectSelected += HandleGazeFireTrigger;
+            }
+        }
+
+        void OnDestroy()
+        {
+            // NEW: Clean up event subscription
+            if (enableGazeFiring && selectionInputManager != null)
+            {
+                selectionInputManager.OnObjectSelected -= HandleGazeFireTrigger;
+            }
+        }
+
+        // NEW: Handle gaze-based fire trigger
+        private void HandleGazeFireTrigger(GameObject target)
+        {
+            // Only trigger fire for valid enemy targets (you can customize this check)
+            if (target != null && target.CompareTag("Enemy"))
+            {
+                m_GazeFireTriggered = true;
+            }
         }
 
         void LateUpdate()
         {
             m_FireInputWasHeld = GetFireInputHeld();
+            
+            // NEW: Reset gaze fire trigger after frame
+            m_GazeFireWasHeld = m_GazeFireTriggered;
+            m_GazeFireTriggered = false;
         }
 
         public bool CanProcessInput()
@@ -110,10 +151,6 @@ namespace Unity.FPS.Gameplay
             return movementMode == MovementMode.HumanJoystick && humanJoystick != null;
         }
 
-
-
-
-
         // Smooth turn from right thumbstick horizontal
         public float GetLookInputsHorizontal()
         {
@@ -166,10 +203,19 @@ namespace Unity.FPS.Gameplay
             return false;
         }
 
-        // Fire - Right trigger
+        // Fire - Right trigger OR gaze selection
         public bool GetFireInputDown()
         {
-            return GetFireInputHeld() && !m_FireInputWasHeld;
+            bool triggerFire = GetFireInputHeld() && !m_FireInputWasHeld;
+            
+            // NEW: Add gaze fire option
+            if (enableGazeFiring)
+            {
+                bool gazeFire = m_GazeFireTriggered && !m_GazeFireWasHeld;
+                return triggerFire || gazeFire;
+            }
+            
+            return triggerFire;
         }
 
         public bool GetFireInputReleased()
@@ -181,7 +227,15 @@ namespace Unity.FPS.Gameplay
         {
             if (CanProcessInput())
             {
-                return OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, RightController) > 0.5f;
+                // NEW: Combine trigger and gaze input
+                bool triggerHeld = OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, RightController) > 0.5f;
+                
+                if (enableGazeFiring)
+                {
+                    return triggerHeld || m_GazeFireTriggered;
+                }
+                
+                return triggerHeld;
             }
             return false;
         }
