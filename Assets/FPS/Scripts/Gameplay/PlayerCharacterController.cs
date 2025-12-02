@@ -96,6 +96,8 @@ namespace Unity.FPS.Gameplay
         [Tooltip("Damage recieved when falling at the maximum speed")]
         public float FallDamageAtMaxSpeed = 50f;
 
+        HeadGainManager m_HeadGainManager;
+
         [Header("VR Smooth Rotation")]
         [Tooltip("Smooth rotation speed for VR thumbstick turning")]
         public float VRRotationSmoothing = 10f;
@@ -166,6 +168,13 @@ namespace Unity.FPS.Gameplay
 
             m_Actor = GetComponent<Actor>();
             DebugUtility.HandleErrorIfNullGetComponent<Actor, PlayerCharacterController>(m_Actor, this, gameObject);
+
+            //Optional HeadGainManager component
+            m_HeadGainManager = GetComponent<HeadGainManager>();
+            if (m_HeadGainManager != null)
+            {
+                Debug.Log("HeadGainManager found and ready!");
+            }
 
             m_Controller.enableOverlapRecovery = true;
 
@@ -272,19 +281,30 @@ namespace Unity.FPS.Gameplay
 
         void HandleCharacterMovement()
         {
+            VRPlayerInputHandler vrInput = m_InputHandler as VRPlayerInputHandler;
+            bool isUsingHumanJoystick = vrInput != null && vrInput.IsUsingHumanJoystick();
+
             // horizontal character rotation
             {
-                float targetRotationInput = m_InputHandler.GetLookInputsHorizontal() * RotationSpeed * RotationMultiplier;
-                
-                // Smooth the rotation velocity
-                m_CurrentRotationVelocity = Mathf.Lerp(
-                    m_CurrentRotationVelocity, 
-                    targetRotationInput, 
-                    1f - Mathf.Exp(-VRRotationSmoothing * Time.deltaTime)
-                );
-                
-                // Apply smoothed rotation
-                transform.Rotate(new Vector3(0f, m_CurrentRotationVelocity, 0f), Space.Self);
+                // If in HumanJoystick mode and HeadGainManager is available, let it handle rotation
+                if (isUsingHumanJoystick && m_HeadGainManager != null)
+                {
+                    // HeadGainManager will handle rotation via its own Update loop
+                    // No action needed here
+                }
+                else
+                {
+                    // Standard thumbstick rotation with smoothing
+                    float targetRotationInput = m_InputHandler.GetLookInputsHorizontal() * RotationSpeed * RotationMultiplier;
+                    
+                    m_CurrentRotationVelocity = Mathf.Lerp(
+                        m_CurrentRotationVelocity, 
+                        targetRotationInput, 
+                        1f - Mathf.Exp(-VRRotationSmoothing * Time.deltaTime)
+                    );
+                    
+                    transform.Rotate(new Vector3(0f, m_CurrentRotationVelocity, 0f), Space.Self);
+                }
             }
 
             // vertical camera rotation
@@ -299,7 +319,6 @@ namespace Unity.FPS.Gameplay
                 PlayerCamera.transform.localEulerAngles = new Vector3(m_CameraVerticalAngle, 0, 0);
             }
 
-            VRPlayerInputHandler vrInput = m_InputHandler as VRPlayerInputHandler;
             // character movement handling
             bool isSprinting = m_InputHandler.GetSprintInputHeld();
             {
@@ -317,18 +336,7 @@ namespace Unity.FPS.Gameplay
                 // handle grounded movement
                 if (IsGrounded)
                 {
-                    if (vrInput != null && vrInput.IsUsingHumanJoystick())
-                    {
-                        // HumanJoystick mode - skip normal movement, only handle rotation
-                        // horizontal character rotation
-                        transform.Rotate(
-                            new Vector3(0f, (m_InputHandler.GetLookInputsHorizontal() * RotationSpeed * RotationMultiplier), 0f), 
-                            Space.Self);
-                        
-                        // Skip the rest of movement code by jumping to after it
-                        // (You'll need to add a label after the movement block - see below)
-                    }
-                    else
+                    if (!isUsingHumanJoystick)
                     {
                         // calculate the desired velocity from inputs, max speed, and current slope
                         Vector3 targetVelocity = worldspaceMoveInput * MaxSpeedOnGround * speedModifier;

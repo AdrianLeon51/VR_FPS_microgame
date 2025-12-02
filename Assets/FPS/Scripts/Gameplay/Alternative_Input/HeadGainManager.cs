@@ -1,8 +1,10 @@
+using System;
 using UnityEngine;
 
 public class HeadGainManager : MonoBehaviour
 {
     [Header("Rotation Amplification")]
+    public Transform playerObject;          // The tracked head or source transform
     public Transform targetObject;          // The tracked head or source transform
     public float thresholdRotation = 1f;    // Minimum yaw angle to trigger rotation
     public float rotationSpeed = 0.8f;      // Equivalent to movementSpeed in original code
@@ -18,16 +20,13 @@ public class HeadGainManager : MonoBehaviour
         Quaternion targetRotation = targetObject.localRotation;
 
         // Check yaw angle
-        if (targetRotation.eulerAngles.y >= thresholdRotation)
+        if (Math.Abs(targetObject.localEulerAngles.y) >= thresholdRotation)
         {
             Quaternion rotateDirection =
                 Quaternion.Euler(0f, targetObject.eulerAngles.y, 0f);
 
-            transform.rotation = Quaternion.Slerp(
-                transform.rotation,
-                rotateDirection,
-                Time.deltaTime * rotationSpeed
-            );
+            //Quaternion currentRotationVelocity = Quaternion.Slerp(transform.rotation, rotateDirection, rotationSpeed * Time.deltaTime);
+            playerObject.rotation = Quaternion.Slerp(playerObject.rotation, rotateDirection, Time.deltaTime * rotationSpeed);
 
             rotationIdleActive = false;
         }

@@ -3028,6 +3028,8 @@ GameObject:
   - component: {fileID: 543134905}
   - component: {fileID: 543134904}
   - component: {fileID: 543134906}
+  - component: {fileID: 543134907}
+  - component: {fileID: 543134908}
   m_Layer: 0
   m_Name: CenterEyeAnchor
   m_TagString: MainCamera
@@ -3153,6 +3155,35 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!114 &543134907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543134902}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45a33a3e5e563a1459e63258f1475472, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &543134908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543134902}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd503b956e318a44d99fb8ce95db1544, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerObject: {fileID: 2729281214152228923}
+  targetObject: {fileID: 543134903}
+  thresholdRotation: 1
+  rotationSpeed: 1.5
+  activateRotation: 1
 --- !u!1 &552441019
 GameObject:
   m_ObjectHideFlags: 0
@@ -11320,7 +11351,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _monoscopic: 0
   _sharpenType: 0
-  _enableDynamicResolution: 0
+  _enableDynamicResolution: 1
   minDynamicResolutionScale: 1
   maxDynamicResolutionScale: 1
   quest2MinDynamicResolutionScale: 0.7
@@ -14192,10 +14223,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2729281214152228935}
-    - targetCorrespondingSourceObject: {fileID: 7253983127304857660, guid: 761cdc9e4e883334cbdcea062d0befa7,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2729281214152228946}
     - targetCorrespondingSourceObject: {fileID: 2703355619797536407, guid: 761cdc9e4e883334cbdcea062d0befa7,
         type: 3}
       insertIndex: -1
@@ -14242,7 +14269,8 @@ MonoBehaviour:
   LeftController: 1
   RightController: 2
   ThumbstickDeadzone: 0.2
-  movementMode: 0
+  playerCamera: {fileID: 543134902}
+  movementMode: 1
   humanJoystick: {fileID: 2729281214152228935}
 --- !u!1 &2729281214152228925 stripped
 GameObject:
@@ -14283,7 +14311,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxTranslationSpeed: 3
-  _deadzone: 0.657
+  _deadzone: 0.1
   _offsetHeadPivot: 0.09
   _bodyOffsetForMaxSpeed: 0.4
   _terrainLayer:
@@ -14293,22 +14321,6 @@ MonoBehaviour:
   _transferFactor: 1
   playerTransform: {fileID: 2729281214152228923}
   movementEnabled: 1
---- !u!114 &2729281214152228946
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2729281214152228921}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd503b956e318a44d99fb8ce95db1544, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetObject: {fileID: 543134903}
-  thresholdRotation: 1
-  rotationSpeed: 0.8
-  activateRotation: 1
 --- !u!1001 &2729281214182533258
 PrefabInstance:
   m_ObjectHideFlags: 0
