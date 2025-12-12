@@ -25,6 +25,10 @@ namespace Unity.FPS.Gameplay
         bool m_FireInputWasHeld;
         float m_SmoothTurnInput;
 
+        public GameObject playerCamera;
+
+        private bool componentsToggled = false;
+
         public enum MovementMode
         {
             Thumbstick,
@@ -102,6 +106,12 @@ namespace Unity.FPS.Gameplay
 
         private Vector3 GetHumanJoystickMove()
         {
+            if (!componentsToggled)
+            {
+                transform.GetComponent<HumanJoystickTranslation>().enabled = true;
+                playerCamera.GetComponent<HeadGainManager>().enabled = true;
+                componentsToggled = true;
+            }
             return Vector3.zero; // Don't feed PlayerCharacterController
         }
 

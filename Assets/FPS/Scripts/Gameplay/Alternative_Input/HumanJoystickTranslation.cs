@@ -52,28 +52,27 @@ public class HumanJoystickTranslation : MonoBehaviour
 
     private bool _calibrated = false;
 
-
-        void Start()
+    void Start()
     {
         _camera = GameObject.Find("CenterEyeAnchor");
-            // Create a child object on the camera that represents the pivot point for the
-            // player's yaw/lean pivot. Avoid creating an orphaned GameObject at world origin
-            // by not calling Instantiate() on a temporary and instead creating a single
-            // GameObject and parenting it immediately.
-            Vector3 centerOfYawRotationPosition = _camera.transform.position - (_camera.transform.forward * _offsetHeadPivot);
-            GameObject centerOfYawRotation = new GameObject("CenterOfYawRotation");
-            _headJoint = centerOfYawRotation;
-            // parent to the camera and keep world position
-            _headJoint.transform.SetParent(_camera.transform, true);
-            _headJoint.transform.position = centerOfYawRotationPosition;
-        
+        // Create a child object on the camera that represents the pivot point for the
+        // player's yaw/lean pivot. Avoid creating an orphaned GameObject at world origin
+        // by not calling Instantiate() on a temporary and instead creating a single
+        // GameObject and parenting it immediately.
+        Vector3 centerOfYawRotationPosition = _camera.transform.position - (_camera.transform.forward * _offsetHeadPivot);
+        GameObject centerOfYawRotation = new GameObject("CenterOfYawRotation");
+        _headJoint = centerOfYawRotation;
+        // parent to the camera and keep world position
+        _headJoint.transform.SetParent(_camera.transform, true);
+        _headJoint.transform.position = centerOfYawRotationPosition;
+
         CalibrateLeaningKS();
     }
 
     void Update()
     {
         OVRInput.Update();
-        float triggerAxis = MathF.Max(OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger), OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger));
+        float triggerAxis = MathF.Max(OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger), OVRInput.Get(OVRInput.Axis1D.SecondaryHandTrigger));
 
         // calibrate leaning each time the interface is activated
         if (OnTriggerDown(triggerAxis))
