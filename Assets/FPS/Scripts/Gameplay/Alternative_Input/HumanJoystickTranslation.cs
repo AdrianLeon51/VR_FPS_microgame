@@ -69,6 +69,7 @@ public class HumanJoystickTranslation : MonoBehaviour
         CalibrateLeaningKS();
     }
 
+
     void Update()
     {
         OVRInput.Update();
