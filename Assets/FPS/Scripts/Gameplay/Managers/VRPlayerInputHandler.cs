@@ -41,6 +41,7 @@ namespace Unity.FPS.Gameplay
         [Header("Optional Reference")]
         public HumanJoystickTranslation humanJoystick; // drag in inspector
 
+        [SerializeField] private EyeGaze eyeGaze;
 
         void Start()
         {
@@ -50,6 +51,7 @@ namespace Unity.FPS.Gameplay
                 m_PlayerCharacterController, this, gameObject);
             m_GameFlowManager = FindObjectOfType<GameFlowManager>();
             DebugUtility.HandleErrorIfNullFindObject<GameFlowManager, VRPlayerInputHandler>(m_GameFlowManager, this);
+
 
             // Validate right hand anchor
             if (RightHandAnchor == null)
@@ -199,12 +201,39 @@ namespace Unity.FPS.Gameplay
         // NEW: Get the forward direction the controller is pointing
         public Vector3 GetAimDirection()
         {
-            if (RightHandAnchor != null)
+            // Thumbstick mode ? controller pointing
+            if (movementMode == MovementMode.Thumbstick && RightHandAnchor != null)
+            {
                 return RightHandAnchor.forward;
-            
-            return transform.forward; // Fallback
+            }
+
+            // HumanJoystick mode ? eye gaze
+            if (movementMode == MovementMode.HumanJoystick && eyeGaze != null)
+            {
+                return eyeGaze.GetGazeDirection();
+            }
+
+            // Fallback ? head forward
+            return playerCamera != null ? playerCamera.transform.forward : transform.forward;
         }
-        
+
+        public Vector3 GetAimOrigin()
+        {
+            if (movementMode == MovementMode.HumanJoystick && eyeGaze != null)
+            {
+                return eyeGaze.GetGazeOrigin();
+            }
+
+            if (RightHandAnchor != null)
+            {
+                return RightHandAnchor.position;
+            }
+
+            return playerCamera != null ? playerCamera.transform.position : transform.position;
+        }
+
+
+
         // Aim - Right grip
         public bool GetAimInputHeld()
         {

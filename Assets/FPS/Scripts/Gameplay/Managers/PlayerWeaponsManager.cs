@@ -93,6 +93,9 @@ namespace Unity.FPS.Gameplay
         WeaponSwitchState m_WeaponSwitchState;
         int m_WeaponSwitchNewWeaponIndex;
 
+        public VRPlayerInputHandler vRPlayerInputHandler;
+        public EyeGaze eyeGaze;
+
         void Start()
         {
             ActiveWeaponIndex = -1;
@@ -109,6 +112,7 @@ namespace Unity.FPS.Gameplay
             SetFov(DefaultFov);
 
             OnSwitchedToWeapon += OnWeaponSwitched;
+
 
             // Add starting weapons
             foreach (var weapon in StartingWeapons)
@@ -176,10 +180,19 @@ namespace Unity.FPS.Gameplay
 
             // Pointing at enemy handling
             IsPointingAtEnemy = false;
-            if (activeWeapon)
+
+            if (activeWeapon != null)
             {
-                if (Physics.Raycast(WeaponCamera.transform.position, WeaponCamera.transform.forward, out RaycastHit hit,
-                    1000, -1, QueryTriggerInteraction.Ignore))
+                Vector3 aimOrigin = WeaponCamera.transform.position;
+                Vector3 aimDirection = eyeGaze._lastHitObjectPos;
+
+                if (Physics.Raycast(
+                    aimOrigin,
+                    aimDirection,
+                    out RaycastHit hit,
+                    1000f,
+                    -1,
+                    QueryTriggerInteraction.Ignore))
                 {
                     if (hit.collider.GetComponentInParent<Health>() != null)
                     {
@@ -187,7 +200,20 @@ namespace Unity.FPS.Gameplay
                     }
                 }
             }
+
         }
+        void OnDrawGizmos()
+        {
+            if (!Application.isPlaying || m_InputHandler == null)
+                return;
+
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawRay(
+                m_InputHandler.GetAimOrigin(),
+                m_InputHandler.GetAimDirection() * 5f
+            );
+        }
+
 
 
         // Update various animated features in LateUpdate because it needs to override the animated arm position

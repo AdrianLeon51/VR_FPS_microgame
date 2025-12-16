@@ -37,6 +37,12 @@ namespace Unity.FPS.Gameplay
 
         private Quaternion offsetRotation;
 
+        [Header("Optional Eye Gaze")]
+        public EyeGaze eyeGaze;
+
+        public VRPlayerInputHandler InputHandler;
+
+
         void Start()
         {
             // Auto-find RightHandAnchor if not assigned
@@ -60,11 +66,31 @@ namespace Unity.FPS.Gameplay
 
         void LateUpdate()
         {
-            if (RightHandAnchor == null) return;
+            bool useEyeGaze =
+                InputHandler != null &&
+                InputHandler.movementMode == VRPlayerInputHandler.MovementMode.HumanJoystick &&
+                eyeGaze != null;
 
-            // Calculate target position and rotation
-            Quaternion targetRotation = RightHandAnchor.rotation * offsetRotation;
-            Vector3 targetPosition = RightHandAnchor.position + (RightHandAnchor.rotation * PositionOffset);
+            Vector3 targetPosition;
+            Quaternion targetRotation;
+
+            if (useEyeGaze)
+            {
+                // Eye gaze based aiming
+                targetPosition = transform.position;
+                targetRotation = Quaternion.LookRotation(
+                    eyeGaze.GetGazeDirection(),
+                    Vector3.up
+                ) * offsetRotation;
+            }
+            else
+            {
+                // Controller based aiming (default behavior)
+                if (RightHandAnchor == null) return;
+
+                targetRotation = RightHandAnchor.rotation * offsetRotation;
+                targetPosition = RightHandAnchor.position + (RightHandAnchor.rotation * PositionOffset);
+            }
 
             // Apply with optional smoothing
             if (SmoothPosition)
@@ -94,13 +120,14 @@ namespace Unity.FPS.Gameplay
             }
         }
 
+
         void OnDrawGizmos()
         {
             if (!ShowAimDebug || !Application.isPlaying) return;
 
             // Draw aim direction
             Gizmos.color = Color.red;
-            Gizmos.DrawRay(transform.position, transform.forward * 5f);
+            Gizmos.DrawRay(transform.position, eyeGaze._lastHitObjectPos * 5f);
 
             // Draw connection to hand
             if (RightHandAnchor != null)
@@ -113,8 +140,8 @@ namespace Unity.FPS.Gameplay
 
         // Public API for weapon scripts to use
         public Vector3 GetAimOrigin() => transform.position;
-        public Vector3 GetAimDirection() => transform.forward;
-        public Ray GetAimRay() => new Ray(transform.position, transform.forward);
+        public Vector3 GetAimDirection() => eyeGaze.GetGazeDirection();
+        public Ray GetAimRay() => new Ray(transform.position, eyeGaze.GetGazeDirection());
 
 #if UNITY_EDITOR
         [Header("Play Mode Tuning Helper")]

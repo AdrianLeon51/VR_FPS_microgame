@@ -218,5 +218,17 @@ public class HumanJoystickTranslation : MonoBehaviour
         );
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(transform.position + Vector3.up * 2.5f - transform.forward * _offsetHeadPivot, 0.02f);
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawSphere(transform.position + Vector3.up * 2.5f + transform.forward * _bodyOffsetForMaxSpeed, 0.02f);
+
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawWireSphere(transform.position + Vector3.up * 2.5f, _deadzone);
+    }
+
 
 }
