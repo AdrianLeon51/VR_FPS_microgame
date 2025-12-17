@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class HumanJoystickTranslation : MonoBehaviour
@@ -51,6 +52,7 @@ public class HumanJoystickTranslation : MonoBehaviour
     public bool movementEnabled = true;
 
     private bool _calibrated = false;
+    private bool startCalib = true;
 
     void Start()
     {
@@ -67,14 +69,25 @@ public class HumanJoystickTranslation : MonoBehaviour
         _headJoint.transform.position = centerOfYawRotationPosition;
 
         CalibrateLeaningKS();
+
     }
 
+    private void LateUpdate()
+    {
+        if (startCalib)
+        {
+            startCalib = false;
+            Debug.Log("Start Calib");
+            CalibrateLeaningKS();
+        }
+    }
 
     void Update()
     {
         OVRInput.Update();
         float triggerAxis = MathF.Max(OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger), OVRInput.Get(OVRInput.Axis1D.SecondaryHandTrigger));
 
+        
         // calibrate leaning each time the interface is activated
         if (OnTriggerDown(triggerAxis))
         {
@@ -154,6 +167,7 @@ public class HumanJoystickTranslation : MonoBehaviour
     private void UpdateLeaningInputs()
     {
         Vector3 diff = this.transform.InverseTransformPoint(_headJoint.transform.position) - _leaningRefPosition;
+        Vector3 diffNoRef = this.transform.InverseTransformPoint(_headJoint.transform.position);
         _velocityAxis = diff.magnitude;
         diff = Vector3.ProjectOnPlane(diff, Vector3.up);
         _tiltingDirectionLocal = diff.normalized;

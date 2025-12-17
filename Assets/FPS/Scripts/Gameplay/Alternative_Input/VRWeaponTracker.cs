@@ -68,7 +68,7 @@ namespace Unity.FPS.Gameplay
         {
             bool useEyeGaze =
                 InputHandler != null &&
-                InputHandler.movementMode == VRPlayerInputHandler.MovementMode.HumanJoystick &&
+                VRPlayerInputHandler.movementMode == VRPlayerInputHandler.MovementMode.HumanJoystick &&
                 eyeGaze != null;
 
             Vector3 targetPosition;
@@ -78,8 +78,9 @@ namespace Unity.FPS.Gameplay
             {
                 // Eye gaze based aiming
                 targetPosition = transform.position;
+                Vector3 newForward = eyeGaze._lastHitObjectPos - transform.position;
                 targetRotation = Quaternion.LookRotation(
-                    eyeGaze.GetGazeDirection(),
+                    newForward.normalized,
                     Vector3.up
                 ) * offsetRotation;
             }

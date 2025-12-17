@@ -1,5 +1,6 @@
 using Unity.FPS.Game;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Unity.FPS.Gameplay
 {
@@ -35,13 +36,25 @@ namespace Unity.FPS.Gameplay
             HumanJoystick
         }
 
+        public enum SelectInput
+        {
+            Dwell,
+            Speech,
+            Tongue,
+            Button
+        }
+
+        public SelectInput selectInput = SelectInput.Button;
         [Header("Movement Input Mode")]
-        public MovementMode movementMode = MovementMode.Thumbstick;
+        public static MovementMode movementMode = MovementMode.Thumbstick;
 
         [Header("Optional Reference")]
-        public HumanJoystickTranslation humanJoystick; // drag in inspector
+        public HumanJoystickTranslation humanJoystick;
 
         [SerializeField] private EyeGaze eyeGaze;
+
+        public static bool fireSucceed;
+
 
         void Start()
         {
@@ -52,6 +65,7 @@ namespace Unity.FPS.Gameplay
             m_GameFlowManager = FindObjectOfType<GameFlowManager>();
             DebugUtility.HandleErrorIfNullFindObject<GameFlowManager, VRPlayerInputHandler>(m_GameFlowManager, this);
 
+            DefaultControls();
 
             // Validate right hand anchor
             if (RightHandAnchor == null)
@@ -89,6 +103,15 @@ namespace Unity.FPS.Gameplay
             }
         }
 
+        void DefaultControls()
+        {
+            if (movementMode == MovementMode.Thumbstick)
+            {
+                selectInput = SelectInput.Button;
+            }
+
+        }
+
         private Vector3 GetThumbstickMove()
         {
             Vector2 thumbstick = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, LeftController);
@@ -112,6 +135,7 @@ namespace Unity.FPS.Gameplay
             {
                 transform.GetComponent<HumanJoystickTranslation>().enabled = true;
                 playerCamera.GetComponent<HeadGainManager>().enabled = true;
+                eyeGaze.enabled = true;
                 componentsToggled = true;
             }
             return Vector3.zero; // Don't feed PlayerCharacterController
@@ -121,7 +145,6 @@ namespace Unity.FPS.Gameplay
         {
             return movementMode == MovementMode.HumanJoystick && humanJoystick != null;
         }
-
 
 
 
@@ -173,6 +196,8 @@ namespace Unity.FPS.Gameplay
         {
             if (CanProcessInput())
             {
+                
+
                 return OVRInput.Get(OVRInput.Button.One, RightController);
             }
             return false;
@@ -181,6 +206,7 @@ namespace Unity.FPS.Gameplay
         // Fire - Right trigger
         public bool GetFireInputDown()
         {
+            
             return GetFireInputHeld() && !m_FireInputWasHeld;
         }
 
@@ -193,7 +219,25 @@ namespace Unity.FPS.Gameplay
         {
             if (CanProcessInput())
             {
-                return OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, RightController) > 0.5f;
+                switch (selectInput)
+                {
+                    case SelectInput.Dwell:
+                        return fireSucceed;
+
+                    case SelectInput.Speech:
+                        return fireSucceed;
+
+                    case SelectInput.Tongue:
+                        return fireSucceed;
+
+                    case SelectInput.Button:
+                        return OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, RightController) > 0.5f;
+
+                    default:
+                        return OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, RightController) > 0.5f;
+
+                }
+
             }
             return false;
         }
@@ -305,5 +349,6 @@ namespace Unity.FPS.Gameplay
             // VR uses GetSwitchWeaponInput instead
             return 0;
         }
+
     }
 }

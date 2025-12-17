@@ -88,7 +88,7 @@ namespace Unity.FPS.Gameplay
                 _combinedGazeDir = headRotOffset * _combinedGazeDir;
             }
 
-            TrySnapGazeDirection();
+            //TrySnapGazeDirection();
 
             UpdateHeadRotationBuffer();
 
@@ -147,9 +147,9 @@ namespace Unity.FPS.Gameplay
                     snappedDir = _gazeDirFilter.Filter(snappedDir);
                 }
 
-                Debug.Log("Snapped from: " + _combinedGazeDir);
                 _combinedGazeDir = snappedDir;
-                Debug.Log("Snapped to: " + _combinedGazeDir);
+                _lastHitObjectPos = hit.point;
+
             }
         }
 
@@ -164,8 +164,6 @@ namespace Unity.FPS.Gameplay
 
             {
                 GameObject hitObject = hit.collider.gameObject;
-
-                // Store the exact hit point instead of object's origin
                 _lastHitObjectPos = hit.point;
 
                 if (hitObject != _lastHitObject)
@@ -173,7 +171,9 @@ namespace Unity.FPS.Gameplay
                     // Reset dwell timer when switching targets
                     _gazeTimer = 0f;
                     currentDwellTarget = null;
+                    VRPlayerInputHandler.fireSucceed = false;
 
+                    Debug.Log("Chhanged dwell to: " + hitObject.name);
                     // Restore previous object's color
                     if (_lastHitObject != null && _originalMaterial != null)
                     {
@@ -194,7 +194,7 @@ namespace Unity.FPS.Gameplay
                         }
 
                         _originalMaterial = new Material(renderer.material); // make a copy
-                        renderer.material.color = gazeColor;
+                        //renderer.material.color = gazeColor;
                     }
 
                     _lastHitObject = hitObject;
@@ -204,19 +204,20 @@ namespace Unity.FPS.Gameplay
                 }
                 else
                 {
-                    if (hitObject.name == "CenterDot")
-                    {
-                        // Increase dwell timer only while looking at same target
-                        _gazeTimer += Time.deltaTime;
+                    // Increase dwell timer only while looking at same target
+                    _gazeTimer += Time.deltaTime;
 
+                    if (hitObject.name == "HitBox")
+                    {
                         if (currentDwellTarget == null && _gazeTimer >= dwellTime)
                         {
+                            Debug.Log("Dwelling at: " + hitObject.name);
                             currentDwellTarget = hitObject;
 
                             // Notify other scripts
                             OnDwellComplete?.Invoke(hitObject);
 
-                            //Debug.Log("DWELL COMPLETE on: " + hitObject.name);
+                            Debug.Log("DWELL COMPLETE on: " + hitObject.name);
                         }
                     }
 
