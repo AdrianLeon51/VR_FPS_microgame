@@ -1,5 +1,6 @@
 using UnityEngine;
 using Unity.FPS.Gameplay;
+using Oculus.Interaction;
 
 
 public enum SelectionMethod
@@ -41,6 +42,7 @@ public class SelectionInputManager : MonoBehaviour
 
     void Start()
     {
+        DataManager.Instance.StartTrial();
         // Subscribe to selection events
         dwellSelection.OnDwellSelected += HandleSelectEvent;
         speechSelection.OnSpeechSelected += HandleSelectEvent;
@@ -84,6 +86,11 @@ public class SelectionInputManager : MonoBehaviour
             VRPlayerInputHandler.fireSucceed = false;
         }
 
+    }
+
+    private void OnDestroy()
+    {
+        DataManager.Instance.FinishTrial();
     }
 }
 

@@ -207,11 +207,11 @@ namespace Unity.FPS.Gameplay
                     // Increase dwell timer only while looking at same target
                     _gazeTimer += Time.deltaTime;
 
-                    if (hitObject.name == "HitBox")
+                    if (hitObject.name == "HitBox" || hitObject.name == "HitBox Top" || hitObject.name == "HitBox Base")
                     {
                         if (currentDwellTarget == null && _gazeTimer >= dwellTime)
                         {
-                            Debug.Log("Dwelling at: " + hitObject.name);
+                            //Debug.Log("Dwelling at: " + hitObject.name);
                             currentDwellTarget = hitObject;
 
                             // Notify other scripts

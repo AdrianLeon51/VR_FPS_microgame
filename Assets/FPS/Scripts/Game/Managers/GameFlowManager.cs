@@ -27,6 +27,8 @@ namespace Unity.FPS.Game
         [Header("Lose")] [Tooltip("This string has to be the name of the scene you want to load when losing")]
         public string LoseSceneName = "LoseScene";
 
+        public string MainSceneName = "FirstScene";
+
 
         public bool GameIsEnding { get; private set; }
 
@@ -62,8 +64,20 @@ namespace Unity.FPS.Game
             }
         }
 
-        void OnAllObjectivesCompleted(AllObjectivesCompletedEvent evt) => EndGame(true);
-        void OnPlayerDeath(PlayerDeathEvent evt) => EndGame(false);
+        void OnAllObjectivesCompleted(AllObjectivesCompletedEvent evt) => EndGameMenu();
+        void OnPlayerDeath(PlayerDeathEvent evt) => EndGameMenu();
+        //void OnAllObjectivesCompleted(AllObjectivesCompletedEvent evt) => EndGame(true);
+        //void OnPlayerDeath(PlayerDeathEvent evt) => EndGame(false);
+
+        void EndGameMenu()
+        {
+            // Remember that we need to load the appropriate end scene after a delay
+            GameIsEnding = true;
+            EndGameFadeCanvasGroup.gameObject.SetActive(true);
+
+            m_SceneToLoad = MainSceneName;
+            m_TimeLoadEndGameScene = Time.time + EndSceneLoadDelay;
+        }
 
         void EndGame(bool win)
         {

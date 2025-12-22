@@ -27,9 +27,10 @@ public class DwellSelection : MonoBehaviour
 
         timer += Time.deltaTime;
 
-        if (timer >= dwellTime && (target.name == "HitBox" || target.name == "HitBox Top"))
+        if (timer >= dwellTime && (target.name == "HitBox" || target.name == "Hitbox Top" || target.name == "Hitbox Base"))
         {
             OnDwellSelected?.Invoke(target);
+            Debug.Log("Select dwell");
             timer = 0f; // Reset so it can select again if needed
         }
     }

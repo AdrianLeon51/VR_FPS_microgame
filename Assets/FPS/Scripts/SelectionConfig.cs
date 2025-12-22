@@ -40,6 +40,7 @@ public class SelectionConfig : MonoBehaviour
     public void SetParticipantInfo()
     {
         participantID = participantIDDropdown.options[participantIDDropdown.value].text;
+        DataManager.Instance.participantID = participantID;
 
     }
 
@@ -47,6 +48,7 @@ public class SelectionConfig : MonoBehaviour
     {
 
         selectionMethod = method;
+        DataManager.Instance.InitializeSession();
 
     }
 

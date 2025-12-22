@@ -1,0 +1,2 @@
+ParticipantID,SelectionMethod,Date,Hour,StartTime,FinishTime,TrialDurationSeconds
+P1,FaceGesture,2025-12-22,14:03:46,14:03:46.121,14:03:51.3885,267
