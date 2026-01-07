@@ -14,6 +14,7 @@ public class SelectionConfig : MonoBehaviour
     public TMP_Dropdown participantIDDropdown = null;
 
     public string experimentSceneName = "MainScene"; // set this to your scene name
+    public string trainSceneName = "SetupScene";
 
     public string participantID = "P1";
 
@@ -55,5 +56,10 @@ public class SelectionConfig : MonoBehaviour
     public void StartScene()
     {
         SceneManager.LoadScene(experimentSceneName);
+    }
+
+    public void StartTrain()
+    {
+        SceneManager.LoadScene(trainSceneName);
     }
 }

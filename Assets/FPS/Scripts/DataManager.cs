@@ -3,12 +3,14 @@ using System;
 using System.IO;
 using System.Text;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class DataManager : MonoBehaviour
 {
     public static DataManager Instance { get; private set; }
 
     [Header("Session Info")]
+    public string sceneName;
     public string participantID;
     public SelectionMethod selectionMethod;
 
@@ -21,6 +23,7 @@ public class DataManager : MonoBehaviour
     [Serializable]
     private class TrialRecord
     {
+        public string sceneName;
         public string participantID;
         public SelectionMethod selectionMethod;
         public DateTime date;
@@ -64,6 +67,7 @@ public class DataManager : MonoBehaviour
     // Call when a trial starts
     public void StartTrial()
     {
+        sceneName = SceneManager.GetActiveScene().name;
         trialStartTime = DateTime.Now;
         trialActive = true;
     }
@@ -78,6 +82,7 @@ public class DataManager : MonoBehaviour
 
         trialBuffer.Add(new TrialRecord
         {
+            sceneName = sceneName,
             participantID = participantID,
             selectionMethod = selectionMethod,
             date = trialStartTime.Date,
@@ -105,6 +110,7 @@ public class DataManager : MonoBehaviour
         foreach (var trial in trialBuffer)
         {
             csv.AppendLine(
+                $"{trial.sceneName}," +
                 $"{trial.participantID}," +
                 $"{trial.selectionMethod}," +
                 $"{trial.date:yyyy-MM-dd}," +
