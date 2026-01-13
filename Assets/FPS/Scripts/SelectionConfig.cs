@@ -18,7 +18,8 @@ public class SelectionConfig : MonoBehaviour
 
     public string participantID = "P1";
 
-
+    public float deadzoneValue;
+    public float maxLeanDistance;
 
     void Awake()
     {
@@ -61,5 +62,10 @@ public class SelectionConfig : MonoBehaviour
     public void StartTrain()
     {
         SceneManager.LoadScene(trainSceneName);
+    }
+
+    public void SetLeanSettings()
+    {
+
     }
 }

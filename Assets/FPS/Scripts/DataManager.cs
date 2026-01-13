@@ -14,6 +14,9 @@ public class DataManager : MonoBehaviour
     public string participantID;
     public SelectionMethod selectionMethod;
 
+    public float deadzoneMax;
+    public float maxLeanValue;
+
     private DateTime trialStartTime;
     private bool trialActive = false;
 
@@ -47,6 +50,9 @@ public class DataManager : MonoBehaviour
 
     public void InitializeSession()
     {
+        deadzoneMax = SelectionConfig.Instance.deadzoneValue;
+        maxLeanValue = SelectionConfig.Instance.maxLeanDistance;
+        
         participantID = SelectionConfig.Instance.participantID;
         selectionMethod = SelectionConfig.Instance.selectionMethod;
 

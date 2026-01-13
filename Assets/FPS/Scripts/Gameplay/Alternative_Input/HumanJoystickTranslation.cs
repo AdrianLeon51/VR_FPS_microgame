@@ -38,7 +38,7 @@ public class HumanJoystickTranslation : MonoBehaviour
     public Transform playerTransform;
     
     #endregion
-
+   
     [Header("Movement Control")]
     GameObject _headJoint;
     private GameObject _camera;
