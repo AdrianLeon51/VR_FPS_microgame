@@ -39,6 +39,11 @@ public class SelectionConfig : MonoBehaviour
     public void ChooseFaceGesture() => SetAndStart(SelectionMethod.FaceGesture);
     public void ChooseJoystick() => SetAndStart(SelectionMethod.Joystick);
 
+    public void SetParticipantID(string id)
+    {
+        participantID = id;
+        DataManager.Instance.participantID = id;
+    }
     public void SetParticipantInfo()
     {
         participantID = participantIDDropdown.options[participantIDDropdown.value].text;

@@ -1,0 +1,2 @@
+ParticipantID,SelectionMethod,Date,Hour,StartTime,FinishTime,TrialDurationSeconds
+SetupScene,P1,Joystick,2026-01-14,15:45:26,15:45:26.114,15:45:55.72229,608

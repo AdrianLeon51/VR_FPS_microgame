@@ -21,12 +21,18 @@ namespace Unity.FPS.UI
             var markerInstance = Instantiate(CompassMarkerPrefab);
 
             markerInstance.Initialize(this, TextDirection);
-            m_Compass.RegisterCompassElement(transform, markerInstance);
+            if (m_Compass != null)
+            {
+                m_Compass.RegisterCompassElement(transform, markerInstance);
+            }
         }
 
         void OnDestroy()
         {
-            m_Compass.UnregisterCompassElement(transform);
+            if (m_Compass != null)
+            {
+                m_Compass.UnregisterCompassElement(transform);
+            }
         }
     }
 }

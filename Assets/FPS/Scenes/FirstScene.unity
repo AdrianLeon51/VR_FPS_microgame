@@ -1167,8 +1167,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2042310382}
-        m_TargetAssemblyTypeName: SelectionConfig, Assembly-CSharp
+      - m_Target: {fileID: 1555822347}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
         m_MethodName: ChooseSpeech
         m_Mode: 1
         m_Arguments:
@@ -1919,8 +1919,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2042310382}
-        m_TargetAssemblyTypeName: SelectionConfig, Assembly-CSharp
+      - m_Target: {fileID: 1555822347}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
         m_MethodName: ChooseDwell
         m_Mode: 1
         m_Arguments:
@@ -2052,8 +2052,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2042310382}
-        m_TargetAssemblyTypeName: SelectionConfig, Assembly-CSharp
+      - m_Target: {fileID: 1555822347}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
         m_MethodName: ChooseJoystick
         m_Mode: 1
         m_Arguments:
@@ -2867,9 +2867,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2042310382}
-        m_TargetAssemblyTypeName: SelectionConfig, Assembly-CSharp
-        m_MethodName: StartScene
+      - m_Target: {fileID: 1555822347}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: StartExperiment
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4187,6 +4187,8 @@ MonoBehaviour:
   sceneName: 
   participantID: 
   selectionMethod: 0
+  deadzoneMax: 0
+  maxLeanValue: 0
 --- !u!4 &1141306669
 Transform:
   m_ObjectHideFlags: 0
@@ -4704,9 +4706,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2042310382}
-        m_TargetAssemblyTypeName: SelectionConfig, Assembly-CSharp
-        m_MethodName: StartTrain
+      - m_Target: {fileID: 1555822347}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: StartTraining
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5340,6 +5342,51 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 396884933}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1555822346
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1555822348}
+  - component: {fileID: 1555822347}
+  m_Layer: 0
+  m_Name: MenuManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1555822347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1555822346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c07ed7ccde63a85418378e263e557ff7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  participantIDDropdown: {fileID: 1303436637}
+--- !u!4 &1555822348
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1555822346}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 15.367471, y: 2.80028, z: 3.6451833}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1593226426
 GameObject:
@@ -6455,8 +6502,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2042310382}
-        m_TargetAssemblyTypeName: SelectionConfig, Assembly-CSharp
+      - m_Target: {fileID: 1555822347}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
         m_MethodName: ChooseFaceGesture
         m_Mode: 1
         m_Arguments:
@@ -8294,3 +8341,4 @@ SceneRoots:
   - {fileID: 2042310383}
   - {fileID: 1141306669}
   - {fileID: 611401874}
+  - {fileID: 1555822348}
