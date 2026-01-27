@@ -6,7 +6,6 @@ public class MenuController : MonoBehaviour
     [Header("UI")]
     [SerializeField] private TMP_Dropdown participantIDDropdown;
 
-    // -------- Participant --------
 
     public void ApplyParticipantID()
     {
@@ -20,14 +19,11 @@ public class MenuController : MonoBehaviour
         SelectionConfig.Instance.SetParticipantID(id);
     }
 
-    // -------- Selection buttons --------
-
     public void ChooseDwell() => SelectionConfig.Instance.ChooseDwell();
     public void ChooseSpeech() => SelectionConfig.Instance.ChooseSpeech();
     public void ChooseFaceGesture() => SelectionConfig.Instance.ChooseFaceGesture();
     public void ChooseJoystick() => SelectionConfig.Instance.ChooseJoystick();
 
-    // -------- Scene buttons --------
 
     public void StartExperiment()
     {
