@@ -14956,9 +14956,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxTranslationSpeed: 6
-  _deadzone: 0.1
-  _offsetHeadPivot: 0.09
-  _bodyOffsetForMaxSpeed: 0.3
+  _deadzone: 0.01
+  _offsetHeadPivot: 0.01
+  _bodyOffsetForMaxSpeed: 0.03
   _terrainLayer:
     serializedVersion: 2
     m_Bits: 0

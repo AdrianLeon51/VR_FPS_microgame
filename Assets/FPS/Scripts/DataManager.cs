@@ -21,7 +21,9 @@ public class DataManager : MonoBehaviour
     private bool trialActive = false;
 
     private List<TrialRecord> trialBuffer = new List<TrialRecord>();
+    private List<QuestionnaireData> questionnaireBuffer = new List<QuestionnaireData>();
     private string csvFilePath;
+    private string questionnaireFilePath;
 
     [Serializable]
     private class TrialRecord
@@ -33,6 +35,17 @@ public class DataManager : MonoBehaviour
         public DateTime startTime;
         public DateTime finishTime;
         public float trialDurationSeconds;
+    }
+
+    [System.Serializable]
+    private class QuestionnaireData
+    {
+        public string participantID = "P1";
+        public SelectionMethod technique;
+        public int questionID;
+        public string question;
+        public string response;
+        public DateTime timestamp;
     }
 
     void Awake()
@@ -56,6 +69,9 @@ public class DataManager : MonoBehaviour
         participantID = SelectionConfig.Instance.participantID;
         selectionMethod = SelectionConfig.Instance.selectionMethod;
 
+        trialBuffer.Clear();
+        questionnaireBuffer.Clear();
+
         string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
         string directory = GetDataDirectory();
 
@@ -66,6 +82,8 @@ public class DataManager : MonoBehaviour
             directory,
             $"P{participantID}_{selectionMethod}_{timestamp}.csv"
         );
+        questionnaireFilePath = Path.Combine(directory,
+            $"P{participantID}_{selectionMethod}_{timestamp}_questionnaire.csv");
 
         Debug.Log("Session initialized");
     }
@@ -104,6 +122,24 @@ public class DataManager : MonoBehaviour
     void OnApplicationQuit()
     {
         WriteCSV();
+        WriteQuestionnaireData();
+    }
+
+    public void RecordQuestionnaireResponse(int questionID, string question, string response)
+    {
+        QuestionnaireData qData = new QuestionnaireData
+        {
+            participantID = this.participantID,
+            technique = this.selectionMethod,
+            questionID = questionID,
+            question = question,
+            response = response,
+            timestamp = DateTime.Now
+        };
+
+        questionnaireBuffer.Add(qData);
+
+        Debug.Log($"DataManager: Questionnaire response buffered - Q{questionID} (Total buffered: {questionnaireBuffer.Count})");
     }
 
     private void WriteCSV()
@@ -129,6 +165,38 @@ public class DataManager : MonoBehaviour
 
         File.WriteAllText(csvFilePath, csv.ToString());
         Debug.Log($"CSV written to {csvFilePath}");
+    }
+
+    public void WriteQuestionnaireData()
+    {
+        if (questionnaireBuffer.Count == 0)
+        {
+            Debug.LogWarning("DataManager: No questionnaire data to write");
+            return;
+        }
+
+        StringBuilder csv = new StringBuilder();
+
+        // Header
+        csv.AppendLine("Timestamp,ParticipantID,Technique,QuestionID,Question,Response");
+
+        // Data rows
+        foreach (var q in questionnaireBuffer)
+        {
+            csv.Append($"{q.timestamp:yyyy-MM-dd HH:mm:ss},");
+            csv.Append($"{q.participantID},");
+            csv.Append($"{q.technique},");
+            csv.Append($"{q.questionID},");
+            csv.Append($"\"{q.question}\","); // Quotes for safety
+            csv.Append($"\"{q.response}\",");
+
+            csv.AppendLine();
+        }
+
+        File.WriteAllText(questionnaireFilePath, csv.ToString());
+
+        Debug.Log($"<color=green>DataManager: Questionnaire data written to file ({questionnaireBuffer.Count} responses)</color>");
+        Debug.Log($"File path: {questionnaireFilePath}");
     }
 
     private string GetDataDirectory()
