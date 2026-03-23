@@ -19631,6 +19631,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2729281214152228935}
+    - targetCorrespondingSourceObject: {fileID: 7253983127304857660, guid: 761cdc9e4e883334cbdcea062d0befa7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2729281214152228936}
     - targetCorrespondingSourceObject: {fileID: 2703355619797536407, guid: 761cdc9e4e883334cbdcea062d0befa7,
         type: 3}
       insertIndex: -1
@@ -19732,6 +19736,23 @@ MonoBehaviour:
   _transferFactor: 1
   playerTransform: {fileID: 2729281214152228923}
   movementEnabled: 1
+--- !u!114 &2729281214152228936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2729281214152228921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9317eaa81db4c4ba04059f61a4d3b15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_DefaultMaxTranslationSpeed: 6
+  m_DefaultDeadzone: 0.01
+  m_DefaultBodyOffsetForMaxSpeed: 0.3
+  m_DefaultTransferSensitivity: 1.5
+  m_DefaultTransferFactor: 1
 --- !u!1001 &2729281214182533258
 PrefabInstance:
   m_ObjectHideFlags: 0

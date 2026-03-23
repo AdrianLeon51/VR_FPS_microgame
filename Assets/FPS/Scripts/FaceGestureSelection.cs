@@ -26,7 +26,7 @@ public class FaceGestureSelection : MonoBehaviour
 
         // Example: Get the weight (blend shape coefficient) for a specific expression
         float tongueWeight = faceExpressions.GetWeight(OVRFaceExpressions.FaceExpression.TongueOut);
-        Debug.Log("JawWeight: " + tongueWeight);
+        //Debug.Log("JawWeight: " + tongueWeight);
         if (tongueWeight >= threshold && target != null)
         {
             Debug.Log("JawWeight: " + tongueWeight);
