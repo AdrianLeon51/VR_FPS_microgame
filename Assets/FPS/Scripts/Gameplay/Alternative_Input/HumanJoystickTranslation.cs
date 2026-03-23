@@ -128,7 +128,7 @@ public class HumanJoystickTranslation : MonoBehaviour
         _leaningRefPosition = this.transform.InverseTransformPoint(_headJoint.transform.position);
         //_leaningCalibKit.transform.rotation = Quaternion.identity;
         _calibrated = true;
-        //Debug.Log("Calibration true");
+        Debug.Log("Calibration true");
     }
     
     private Vector3 RecordCalibratedPosition()
@@ -180,6 +180,7 @@ public class HumanJoystickTranslation : MonoBehaviour
         float transformFunc = Mathf.Pow(adjustedInput * _transferSensitivity, _exponentialTransferFunctionPower) * _transferFactor;
         
         _velocityAxis = _velocityAxis * transformFunc;
+        Debug.Log("Updated leaning inputs");
     }
     
     public Vector3 GetMovementDirection()

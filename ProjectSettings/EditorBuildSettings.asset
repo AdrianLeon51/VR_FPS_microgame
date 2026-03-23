@@ -17,7 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/FPS/Scenes/SetupScene.unity
     guid: 2ac14d9aaa0bc944ab1173bcb7769190
-  - enabled: 0
+  - enabled: 1
     path: Assets/FPS/Scenes/testSetupScene.unity
     guid: 062e1da6093881d4ca9ece210b2f6879
   - enabled: 1
