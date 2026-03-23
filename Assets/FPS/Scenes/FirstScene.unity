@@ -3901,7 +3901,7 @@ MonoBehaviour:
   launchSimultaneousHandsControllersOnStartup: 0
   isInsightPassthroughEnabled: 0
   shouldBoundaryVisibilityBeSuppressed: 0
-  requestBodyTrackingPermissionOnStartup: 0
+  requestBodyTrackingPermissionOnStartup: 1
   requestFaceTrackingPermissionOnStartup: 1
   requestEyeTrackingPermissionOnStartup: 1
   requestScenePermissionOnStartup: 1
@@ -9465,7 +9465,7 @@ MonoBehaviour:
   selectionMethod: 0
   participantIDDropdown: {fileID: 1303436637}
   experimentSceneName: MainScene
-  trainSceneName: testSetupScene
+  trainSceneName: SetupScene
   participantID: P1
   deadzoneValue: 0
   maxLeanDistance: 0

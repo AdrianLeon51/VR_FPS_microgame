@@ -19096,7 +19096,7 @@ MonoBehaviour:
   ThumbstickDeadzone: 0.2
   playerCamera: {fileID: 543134902}
   selectInput: 0
-  humanJoystick: {fileID: 0}
+  humanJoystick: {fileID: 2729281214152228927}
   eyeGaze: {fileID: 1117049484}
 --- !u!1 &2729281214152228925 stripped
 GameObject:
