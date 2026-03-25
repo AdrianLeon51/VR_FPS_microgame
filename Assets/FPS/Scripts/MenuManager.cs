@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MenuController : MonoBehaviour
 {
@@ -35,5 +36,15 @@ public class MenuController : MonoBehaviour
     {
         ApplyParticipantID();
         SelectionConfig.Instance.StartTrain();
+    }
+
+    public void QuitApp()
+    {
+        #if UNITY_STANDALONE
+                Application.Quit();
+        #endif
+        #if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+        #endif
     }
 }

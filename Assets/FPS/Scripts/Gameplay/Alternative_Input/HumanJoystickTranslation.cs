@@ -180,7 +180,7 @@ public class HumanJoystickTranslation : MonoBehaviour
         float transformFunc = Mathf.Pow(adjustedInput * _transferSensitivity, _exponentialTransferFunctionPower) * _transferFactor;
         
         _velocityAxis = _velocityAxis * transformFunc;
-        Debug.Log("Updated leaning inputs");
+        //Debug.Log("Updated leaning inputs");
     }
     
     public Vector3 GetMovementDirection()

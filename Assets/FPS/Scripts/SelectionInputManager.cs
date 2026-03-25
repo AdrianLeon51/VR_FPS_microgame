@@ -43,6 +43,8 @@ public class SelectionInputManager : MonoBehaviour
     void Start()
     {
         DataManager.Instance.StartTrial();
+
+        Debug.Log("Selection method: " +  selectionMethod);
         // Subscribe to selection events
         dwellSelection.OnDwellSelected += HandleSelectEvent;
         speechSelection.OnSpeechSelected += HandleSelectEvent;
@@ -72,10 +74,11 @@ public class SelectionInputManager : MonoBehaviour
             VRPlayerInputHandler.fireSucceed = false;
             return;
         }
-
+        Debug.Log("Selec: " + eyeGaze.CurrentGazeTarget);
         // Selection only valid if user is still looking at this object
         if (target == eyeGaze.CurrentGazeTarget)
         {
+            Debug.Log("Selection Event performed " + target.name);
             OnObjectSelected?.Invoke(target);
             VRPlayerInputHandler.fireSucceed = true;
         }

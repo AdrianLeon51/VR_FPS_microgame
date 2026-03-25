@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.34387442, g: 0.09565213, b: 0.10447952, a: 1}
+  m_IndirectSpecularColor: {r: 0.34384623, g: 0.0956322, b: 0.10445542, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -887,7 +887,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 561413546}
+  - {fileID: 1401656317}
   m_Father: {fileID: 1892677304}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &121501054
@@ -5431,75 +5431,6 @@ MonoBehaviour:
   OpaqueStencilValue: 0
   TransparentStencilValue: 0
   WriteColor: 1
---- !u!1 &545518401
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 545518402}
-  - component: {fileID: 545518404}
-  - component: {fileID: 545518403}
-  m_Layer: 0
-  m_Name: '[BuildingBlock] Eye Gaze Right'
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &545518402
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 545518401}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 949997488}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &545518403
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 545518401}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28dd40a6d175d01498e0477360d6c070, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Eye: 1
-  ConfidenceThreshold: 0.5
-  ApplyPosition: 0
-  ApplyRotation: 1
-  ReferenceFrame: {fileID: 0}
-  TrackingMode: 0
---- !u!114 &545518404
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 545518401}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b023183069df224080314a560e6e1ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blockId: f92445a7-db19-452c-8d3d-96820f6c8972
-  instanceId: 09a26b38-0558-49f3-8195-97a0c620f26f
-  version: 1
-  installationRoutineCheckpoint:
-    _installationRoutineId: 
-    _installationVariants: []
 --- !u!1 &552441019
 GameObject:
   m_ObjectHideFlags: 0
@@ -5587,75 +5518,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!1 &561413545
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 561413546}
-  - component: {fileID: 561413548}
-  - component: {fileID: 561413547}
-  m_Layer: 0
-  m_Name: '[BuildingBlock] Eye Gaze Left'
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &561413546
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 561413545}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 121501053}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &561413547
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 561413545}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28dd40a6d175d01498e0477360d6c070, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Eye: 0
-  ConfidenceThreshold: 0.5
-  ApplyPosition: 0
-  ApplyRotation: 1
-  ReferenceFrame: {fileID: 0}
-  TrackingMode: 0
---- !u!114 &561413548
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 561413545}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b023183069df224080314a560e6e1ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blockId: f92445a7-db19-452c-8d3d-96820f6c8972
-  instanceId: 5b0534a9-63e6-4c2a-a1f1-9dba46e5af99
-  version: 1
-  installationRoutineCheckpoint:
-    _installationRoutineId: 
-    _installationVariants: []
 --- !u!1 &569352413
 GameObject:
   m_ObjectHideFlags: 0
@@ -6950,7 +6812,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   appVoiceExperience: {fileID: 676832888}
-  eyeGaze: {fileID: 1117049484}
+  eyeGaze: {fileID: 1117049486}
 --- !u!114 &676832890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7893,7 +7755,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   faceExpressions: {fileID: 777122249}
   threshold: 0.8
-  eyeGaze: {fileID: 1117049484}
+  eyeGaze: {fileID: 1117049486}
 --- !u!114 &777122249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9184,7 +9046,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 545518402}
+  - {fileID: 1777905373}
   m_Father: {fileID: 1892677304}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &949997489
@@ -10195,7 +10057,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1117049485}
-  - component: {fileID: 1117049484}
+  - component: {fileID: 1117049486}
   m_Layer: 0
   m_Name: Eye Gaze
   m_TagString: Untagged
@@ -10203,40 +10065,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1117049484
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1117049483}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3357c8918aa617340bba071e410d7d04, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LeftEye: {fileID: 561413547}
-  RightEye: {fileID: 545518403}
-  dwellTime: 1.5
-  firstGaze: 0
-  FilteringGaze: 1
-  FilterFrequency: 90
-  FilterMinCutOff: 0.05
-  FilterBeta: 10
-  FitlerDcutoff: 1
-  CorrectGaze: 0
-  FrameOffset: 7
-  gazeDistance: 30
-  gazeColor: {r: 1, g: 0, b: 0, a: 1}
-  SnapGazeToHit: 1
-  gazeSnapLayer:
-    serializedVersion: 2
-    m_Bits: 65
-  activateGazeRay: 1
-  _lastHitObjectPos: {x: 0, y: 0, z: 0}
-  interactableLayer:
-    serializedVersion: 2
-    m_Bits: 65
 --- !u!4 &1117049485
 Transform:
   m_ObjectHideFlags: 0
@@ -10254,6 +10082,40 @@ Transform:
   - {fileID: 1981130146}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1117049486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1117049483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3357c8918aa617340bba071e410d7d04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LeftEye: {fileID: 1401656318}
+  RightEye: {fileID: 1777905374}
+  dwellTime: 1.5
+  firstGaze: 0
+  FilteringGaze: 1
+  FilterFrequency: 90
+  FilterMinCutOff: 0.05
+  FilterBeta: 10
+  FitlerDcutoff: 1
+  CorrectGaze: 0
+  FrameOffset: 7
+  gazeDistance: 30
+  gazeColor: {r: 1, g: 0, b: 0, a: 1}
+  SnapGazeToHit: 1
+  gazeSnapLayer:
+    serializedVersion: 2
+    m_Bits: 65
+  activateGazeRay: 0
+  _lastHitObjectPos: {x: 0, y: 0, z: 0}
+  interactableLayer:
+    serializedVersion: 2
+    m_Bits: 65
 --- !u!1 &1129994987
 GameObject:
   m_ObjectHideFlags: 0
@@ -12032,7 +11894,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectionMethod: 1
-  eyeGaze: {fileID: 1117049484}
+  eyeGaze: {fileID: 1117049486}
   dwellSelection: {fileID: 2055164132}
   speechSelection: {fileID: 676832889}
   gestureSelection: {fileID: 777122248}
@@ -12134,6 +11996,75 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2729281214018891898}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1401656316
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1401656317}
+  - component: {fileID: 1401656319}
+  - component: {fileID: 1401656318}
+  m_Layer: 0
+  m_Name: '[BuildingBlock] Eye Gaze Left'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1401656317
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1401656316}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 121501053}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1401656318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1401656316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28dd40a6d175d01498e0477360d6c070, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Eye: 0
+  ConfidenceThreshold: 0.5
+  ApplyPosition: 0
+  ApplyRotation: 1
+  ReferenceFrame: {fileID: 0}
+  TrackingMode: 0
+--- !u!114 &1401656319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1401656316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b023183069df224080314a560e6e1ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blockId: f92445a7-db19-452c-8d3d-96820f6c8972
+  instanceId: 4de916f4-e990-415b-af5f-404e36768ec8
+  version: 1
+  installationRoutineCheckpoint:
+    _installationRoutineId: 
+    _installationVariants: []
 --- !u!1 &1402848967
 GameObject:
   m_ObjectHideFlags: 0
@@ -14679,6 +14610,75 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.00616638, y: -0.030066561, z: -0.020585023}
     m_Extent: {x: 0.033926036, y: 0.041736547, z: 0.054627255}
   m_DirtyAABB: 0
+--- !u!1 &1777905372
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1777905373}
+  - component: {fileID: 1777905375}
+  - component: {fileID: 1777905374}
+  m_Layer: 0
+  m_Name: '[BuildingBlock] Eye Gaze Right'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1777905373
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1777905372}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 949997488}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1777905374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1777905372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28dd40a6d175d01498e0477360d6c070, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Eye: 1
+  ConfidenceThreshold: 0.5
+  ApplyPosition: 0
+  ApplyRotation: 1
+  ReferenceFrame: {fileID: 0}
+  TrackingMode: 0
+--- !u!114 &1777905375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1777905372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b023183069df224080314a560e6e1ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blockId: f92445a7-db19-452c-8d3d-96820f6c8972
+  instanceId: b2ec702d-56a1-4e48-be9e-25b702991efd
+  version: 1
+  installationRoutineCheckpoint:
+    _installationRoutineId: 
+    _installationVariants: []
 --- !u!1 &1786256913
 GameObject:
   m_ObjectHideFlags: 0
@@ -15582,7 +15582,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca472703f08872649a43ba16088f91a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EyeGaze: {fileID: 1117049484}
+  EyeGaze: {fileID: 1117049486}
 --- !u!135 &1826514394
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -16394,7 +16394,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a134989313cc69445ade59c86be3cb2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EyeGaze: {fileID: 1117049484}
+  EyeGaze: {fileID: 1117049486}
   PositionOffset: {x: 0, y: 0, z: 0}
   RotationOffset: {x: 0, y: 0, z: 0}
   SmoothPosition: 0
@@ -17423,7 +17423,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7ea1b36ac4bf54448ba1e1182d2d161, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eyeGaze: {fileID: 1117049484}
+  eyeGaze: {fileID: 1117049486}
   dwellTime: 2
 --- !u!4 &2055164133
 Transform:
@@ -19565,7 +19565,7 @@ PrefabInstance:
         type: 3}
       propertyPath: eyeGaze
       value: 
-      objectReference: {fileID: 1117049484}
+      objectReference: {fileID: 0}
     - target: {fileID: 298744117520805562, guid: 761cdc9e4e883334cbdcea062d0befa7,
         type: 3}
       propertyPath: EyeCamera
@@ -19775,7 +19775,7 @@ MonoBehaviour:
   playerCamera: {fileID: 543134902}
   selectInput: 0
   humanJoystick: {fileID: 2729281214152228927}
-  eyeGaze: {fileID: 1117049484}
+  eyeGaze: {fileID: 0}
 --- !u!1 &2729281214152228925 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2703355619797536407, guid: 761cdc9e4e883334cbdcea062d0befa7,
@@ -19801,7 +19801,7 @@ MonoBehaviour:
   SmoothRotation: 1
   SmoothingSpeed: 20
   ShowAimDebug: 1
-  eyeGaze: {fileID: 1117049484}
+  eyeGaze: {fileID: 0}
   InputHandler: {fileID: 2729281214152228924}
   PrintCurrentOffset: 0
 --- !u!114 &2729281214152228927

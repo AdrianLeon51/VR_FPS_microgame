@@ -27,7 +27,7 @@ public class DwellSelection : MonoBehaviour
 
         timer += Time.deltaTime;
 
-        if (timer >= dwellTime && (target.name == "HitBox" || target.name == "Hitbox Top" || target.name == "Hitbox Base"))
+        if (timer >= dwellTime && (target.name == "HitBox" || target.name == "Hitbox Top" || target.name == "Hitbox Base" || target.name == "GazeInteractor"))
         {
             OnDwellSelected?.Invoke(target);
             Debug.Log("Select dwell");

@@ -1,0 +1,2 @@
+ParticipantID,SelectionMethod,Date,Hour,StartTime,FinishTime,TrialDurationSeconds
+testSetupScene,P1,Speech,2026-03-25,11:06:21,11:06:21.295,11:07:10.17848,883

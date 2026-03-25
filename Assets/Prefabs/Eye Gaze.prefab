@@ -61,12 +61,12 @@ MonoBehaviour:
   SnapGazeToHit: 1
   gazeSnapLayer:
     serializedVersion: 2
-    m_Bits: 0
-  activateGazeRay: 0
+    m_Bits: 73
+  activateGazeRay: 1
   _lastHitObjectPos: {x: 0, y: 0, z: 0}
   interactableLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 73
 --- !u!1 &4201736369511890807
 GameObject:
   m_ObjectHideFlags: 0
