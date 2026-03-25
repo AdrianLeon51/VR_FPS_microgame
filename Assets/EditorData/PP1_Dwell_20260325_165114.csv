@@ -1,0 +1,3 @@
+ParticipantID,SelectionMethod,Date,Hour,StartTime,FinishTime,TrialDurationSeconds
+FirstScene,P1,Dwell,2026-03-25,16:51:09,16:51:09.299,16:51:19.50410,205
+SetupScene,P1,Dwell,2026-03-25,16:51:20,16:51:20.808,16:51:37.67116,863

@@ -54,6 +54,8 @@ public class HumanJoystickTranslation : MonoBehaviour
     private bool _calibrated = false;
     private bool startCalib = true;
 
+    private const string BodyOffsetPrefKey = "BodyOffsetForMaxSpeed";
+
     void Start()
     {
         _camera = GameObject.Find("CenterEyeAnchor");
@@ -68,8 +70,18 @@ public class HumanJoystickTranslation : MonoBehaviour
         _headJoint.transform.SetParent(_camera.transform, true);
         _headJoint.transform.position = centerOfYawRotationPosition;
 
+        SetBodyOffsetPrefs();
+        _bodyOffsetForMaxSpeed = PlayerPrefs.GetFloat(BodyOffsetPrefKey, _bodyOffsetForMaxSpeed);
+
         CalibrateLeaningKS();
 
+    }
+
+    private void SetBodyOffsetPrefs()
+    {
+        PlayerPrefs.SetFloat(BodyOffsetPrefKey, _bodyOffsetForMaxSpeed);
+        PlayerPrefs.Save();
+        Debug.Log("Prefs " + PlayerPrefs.GetFloat(BodyOffsetPrefKey, _bodyOffsetForMaxSpeed));
     }
 
     private void LateUpdate()

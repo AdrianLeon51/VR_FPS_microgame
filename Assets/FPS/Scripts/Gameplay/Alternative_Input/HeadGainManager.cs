@@ -25,9 +25,14 @@ public class HeadGainManager : MonoBehaviour
 
     public static bool rotationIdleActive = false;
 
+    private const string HeadRotPrefKey = "HeadRotationOffset";
+
     private void Start()
     {
         originalRotation = transform.rotation;
+
+        SetHeadRotationPrefs();
+        highRotationSpeed = PlayerPrefs.GetFloat(HeadRotPrefKey, highRotationSpeed);
 
     }
     void Update()
@@ -78,6 +83,12 @@ public class HeadGainManager : MonoBehaviour
                 ovrVignette.VignetteFieldOfView = Mathf.Lerp(maxVignetteFOV, minVignetteFOV, tIdle);
             }
         }
+    }
+
+    private void SetHeadRotationPrefs()
+    {
+        PlayerPrefs.SetFloat(HeadRotPrefKey, highRotationSpeed);
+        PlayerPrefs.Save();
     }
 
     public void ResetRotation()

@@ -1,0 +1,3 @@
+ParticipantID,SelectionMethod,Date,Hour,StartTime,FinishTime,TrialDurationSeconds
+FirstScene,P1,FaceGesture,2026-03-25,16:19:20,16:19:20.513,16:19:40.40419,891
+SetupScene,P1,FaceGesture,2026-03-25,16:19:42,16:19:42.189,16:20:01.03218,843
